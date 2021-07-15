@@ -1,0 +1,67 @@
+// SDK de Mercado Pago
+const mercadopago = require('mercadopago');
+
+// Agrega credenciales
+mercadopago.configure({
+  access_token: process.env.ACCESS_TOKEN
+});
+
+export default (req, res) => {
+  const { products, user } = req.body;
+
+  const payer = {
+    name: user.name,
+    surname: "Luevano",
+    email: user.email,
+    date_created: new Date(),
+    phone: {
+      area_code: "",
+      number: "949 128 866"
+    },
+     
+    identification: {
+      type: "DNI",
+      number: "12345678"
+    },
+    
+    address: {
+      street_name: "Cuesta Miguel Armendáriz",
+      street_number: "1004",
+      zip_code: "11020"
+    }
+  }
+
+  const tranformsItems = products.map(item => (
+    {
+      id: item.id,
+      title: item.title,
+      description: item.description.substring(0, 256),
+      category_id: item.category,
+      quantity: 1,
+      currency_id: 'ARS',
+      unit_price: item.price
+    }
+  ))
+
+  // Crea un objeto de preferencia
+  const preference = {
+
+    items: tranformsItems,
+    back_urls: {
+      success: "http://localhost:3000/",
+      failure: "http://localhost:3000/",
+      pending: "http://localhost:3000/"
+    },
+    auto_return: "approved",
+  };
+
+
+  mercadopago.preferences.create(preference)
+    .then(function (response) {
+      const { init_point } = response.body;
+      res.send({init_point, preference, payer})
+
+    }).catch(function (error) {
+      console.log(error);
+    });
+}
