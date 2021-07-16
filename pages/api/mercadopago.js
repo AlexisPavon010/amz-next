@@ -48,9 +48,9 @@ export default (req, res) => {
 
     items: tranformsItems,
     back_urls: {
-      success: "http://localhost:3000/",
-      failure: "http://localhost:3000/",
-      pending: "http://localhost:3000/"
+      success: 'https://amz-next.vercel.app/',
+      failure: 'https://amz-next.vercel.app/',
+      pending: 'https://amz-next.vercel.app/',
     },
     auto_return: "approved",
   };
@@ -60,6 +60,7 @@ export default (req, res) => {
     .then(function (response) {
       const { init_point } = response.body;
       res.send({init_point, preference, payer})
+      console.log(preference, payer)
 
     }).catch(function (error) {
       console.log(error);
