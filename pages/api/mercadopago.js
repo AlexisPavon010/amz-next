@@ -37,6 +37,7 @@ export default (req, res) => {
       title: item.title,
       description: item.description.substring(0, 256),
       category_id: item.category,
+      picture_url: item.image,
       quantity: 1,
       currency_id: 'ARS',
       unit_price: item.price
@@ -60,7 +61,7 @@ export default (req, res) => {
     .then(function (response) {
       const { init_point } = response.body;
       res.send({init_point, preference, payer})
-      console.log(preference, payer)
+      // console.log(preference, payer)
 
     }).catch(function (error) {
       console.log(error);
