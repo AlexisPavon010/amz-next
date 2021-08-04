@@ -57,6 +57,9 @@ export default async (req, res) => {
             // console.log(req.body)
             res.status(200).json({ message: 'Payment Webhook Rcieved' })
         }
+        if( action === 'test.created' ) {
+            res.status(200).json({ message: 'Payment Webhook test Rcieved' })
+        }
     }
 }
 
