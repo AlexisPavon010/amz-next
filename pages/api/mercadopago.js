@@ -48,9 +48,9 @@ export default (req, res) => {
 
     items: tranformsItems,
     back_urls: {
-      success: 'https://amz-next.vercel.app/',
-      failure: 'https://amz-next.vercel.app/',
-      pending: 'https://amz-next.vercel.app/',
+      success: 'https://amz-next-468lgr2zg-alexispavon010.vercel.app/',
+      failure: 'https://amz-next-468lgr2zg-alexispavon010.vercel.app/',
+      pending: 'https://amz-next-468lgr2zg-alexispavon010.vercel.app/',
     },
     auto_return: "approved",
   };
