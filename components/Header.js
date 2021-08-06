@@ -33,17 +33,17 @@ export default function Header() {
                 </div>
                 <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
                     <div className='link' onClick={!session ? signIn : signOut }> 
-                        <p>{ session ? `Hello! ${session.user.name}` : 'Sign In'}</p>
-                        <p className='font-extrabold md:text-sm'>Account & less</p>
+                        <p>{ session ? `Hello! ${session.user.name}` : 'Iniciar'}</p>
+                        <p className='font-extrabold md:text-sm'>Account & Mas</p>
                     </div>
-                    <div className='link'>
-                        <p>hellow</p>
-                        <p className='font-extrabold md:text-sm'>Account & less</p>
+                    <div onClick={()=>{router.push('/orders')}} className='link'>
+                        <p>Order</p>
+                        <p className='font-extrabold md:text-sm'>Ordenes & Mas</p>
                     </div>
                     <div className='relative link flex' onClick={()=>{router.push('/checkout')}}>
                         <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold'>{items.length}</span>
                         <ShoppingCartIcon className='h-10' />
-                        <p className='hidden md:inline font-extrabold md:text-sm mt-2'>Basket</p>
+                        <p className='hidden md:inline font-extrabold md:text-sm mt-2'>Carrito</p>
                     </div>
                 </div>
             </div>

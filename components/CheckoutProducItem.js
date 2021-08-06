@@ -3,13 +3,15 @@ import { StarIcon } from "@heroicons/react/outline";
 import Currency from "react-currency-format";
 import { useDispatch } from 'react-redux'
 import { removeFromBasket } from '../slices/basketReducer'
+import { useSession } from "next-auth/client";
 
-export default function CheckoutProducItem({ id, title, price, description, rating, category, image, hasPrime }) {
+export default function CheckoutProducItem({ docId, id, title, price, description, rating, category, image, hasPrime }) {
     const dispatch = useDispatch()
+    const [session] = useSession()
 
     const removeBasket = () => {
         dispatch(removeFromBasket({
-            id
+            id, docId, session
         }));
     }
     return (
@@ -21,7 +23,7 @@ export default function CheckoutProducItem({ id, title, price, description, rati
                 </p>
                 <div>
                     {Array(rating).fill().map((_, i) => (
-                        <StarIcon key={i} className='h-5 bg-yellow-400' />
+                        <StarIcon key={i} className='h-5 text-yellow-400' />
                     ))}
                 </div>
                 <p className='text-xs my-2 line-clamp-3'>
@@ -39,7 +41,6 @@ export default function CheckoutProducItem({ id, title, price, description, rati
 
             </div>
             <div className='flex flex-col space-y-2 my-auto justify-self-end'>
-                <button className='mt-auto button'>add to basket</button>
                 <button onClick={removeBasket} className='mt-auto button'>Remove From the basket</button>
             </div>
         </div>

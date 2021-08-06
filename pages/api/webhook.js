@@ -2,6 +2,7 @@ import { buffer } from "micro"
 import * as admin from 'firebase-admin'
 import axios from "axios";
 
+
 // SDK de Mercado Pago
 const mercadopago = require('mercadopago');
 
@@ -17,6 +18,8 @@ const app = !admin.apps.length
     credential: admin.credential.cert(serviceAccount),
 })
 : admin.app();
+
+
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
@@ -41,16 +44,17 @@ export default async (req, res) => {
                 if (error){
                     console.log(error);
                 }else{
-                    const { card, id, additional_info } = response.body;
-                    const db = app.firestore()
-                    db.collection('orders').doc(`${id}`).set({
-                        name: card.cardholder.name,
+                    const { card, id, additional_info, payer } = response.body;
+                    const db = app.firestore();
+                    console.log( response.body)
+                    db.collection('user').doc(payer.email).collection('ordenes').doc(`${id}`).set({
+                        email: payer.email,
+                        name: payer.name,
                         title: additional_info.items[0].title,
                         amount: additional_info.items[0].unit_price,
                         image: additional_info.items[0].picture_url,
                         paymentId: id
                     })
-                    console.log( additional_info.items[0].unit_price)
                 }
             });    
 

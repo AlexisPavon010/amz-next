@@ -4,12 +4,17 @@ import { StarIcon } from "@heroicons/react/outline";
 import Currency from 'react-currency-format';
 import { useDispatch } from 'react-redux'
 import { addToBasket } from "../slices/basketReducer";
+import { useSession } from "next-auth/client";
+import { db } from "../firebase";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 
 export default function Product({id, title, price, description, category, image}) {
+
+    const [session] = useSession()
+    
 
     const dispatch = useDispatch()
 
@@ -21,6 +26,7 @@ export default function Product({id, title, price, description, category, image}
 
     const addItemToBasket = () => {
         const product = {
+            session,
             id,
             title,
             price,
@@ -28,10 +34,11 @@ export default function Product({id, title, price, description, category, image}
             category,
             image,
         };
+
         dispatch(addToBasket(product))
     }
     return (
-        <div className='relative flex flex-col m-5 bg-white p-10 z-30'>
+        <div className='relative flex flex-col m-5 bg-gray-600 text-white p-10 z-30'>
             <p className='absolute top-2 right-2 text-xs italic text-gray-400'>{category}</p>
             <Image src={image} 
             width={200}
@@ -41,14 +48,15 @@ export default function Product({id, title, price, description, category, image}
             <h4 className='my-3'>{title}</h4>
             <div className="flex">
             {Array(rating).fill().map((_, i)=>(
-                <StarIcon key={i} className='h-5 bg-yellow-400' />
+                <StarIcon key={i} className='h-5 text-yellow-400' />
             ))}
             </div>
 
             <p className='text-xs my-2'>{description}</p>
 
             <div className='mb-5'>
-                <Currency  value={price} currency='GBP' prefix={'$'}/>
+                <p>{price}</p>
+                {/* <Currency  value={price} currency='GBP' prefix={'$'}/> */}
             </div>
             
             {hasPrime && (
@@ -57,7 +65,7 @@ export default function Product({id, title, price, description, category, image}
                 <p className='text-xs text-gray-500 '>Freee</p>
             </div>)}
 
-            <button onClick={addItemToBasket} className='mt-auto button'>Add to basket</button>
+            <button onClick={addItemToBasket} className='mt-auto button text-gray-900'>Add to basket</button>
 
 
         </div>

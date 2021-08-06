@@ -9,27 +9,7 @@ mercadopago.configure({
 export default (req, res) => {
   const { products, user } = req.body;
 
-  const payer = {
-    name: user.name,
-    surname: "Luevano",
-    email: user.email,
-    date_created: new Date(),
-    phone: {
-      area_code: "",
-      number: "949 128 866"
-    },
-     
-    identification: {
-      type: "DNI",
-      number: "12345678"
-    },
-    
-    address: {
-      street_name: "Cuesta Miguel Armendáriz",
-      street_number: "1004",
-      zip_code: "11020"
-    }
-  }
+  
 
   const tranformsItems = products.map(item => (
     {
@@ -48,10 +28,14 @@ export default (req, res) => {
   const preference = {
 
     items: tranformsItems,
+    payer: {
+      name: user.name,
+      email: user.email,
+    },
     back_urls: {
-      success: 'https://amz-next-468lgr2zg-alexispavon010.vercel.app/',
-      failure: 'https://amz-next-468lgr2zg-alexispavon010.vercel.app/',
-      pending: 'https://amz-next-468lgr2zg-alexispavon010.vercel.app/',
+      success: 'https://amz-next.vercel.app/success',
+      failure: 'https://amz-next.vercel.app/failure',
+      pending: 'https://amz-next.vercel.app/pending',
     },
     auto_return: "approved",
   };
@@ -60,7 +44,8 @@ export default (req, res) => {
   mercadopago.preferences.create(preference)
     .then(function (response) {
       const { init_point } = response.body;
-      res.send({init_point, preference, payer})
+      console.log(response.body)
+      res.send({init_point, preference,})
       // console.log(preference, payer)
 
     }).catch(function (error) {
