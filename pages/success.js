@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 
-export default function success() {
+const success = () => {
     const router = useRouter()
 
     return (
@@ -25,3 +25,5 @@ export default function success() {
         </div>
     )
 }
+
+export default success;
