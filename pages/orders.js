@@ -1,5 +1,5 @@
 import Header from '../components/Header'
-export default function orders() {
+export default function Orders() {
 
     return (
         <div className='h-screen'>

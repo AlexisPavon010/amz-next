@@ -2,9 +2,8 @@ import Header from '../components/Header'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { useRouter } from 'next/router'
 
-const success = () => {
+export default function Success() {
     const router = useRouter()
-
     return (
         <div className='bg-gray-100 h-screen'>
             <Header />
@@ -25,5 +24,3 @@ const success = () => {
         </div>
     )
 }
-
-export default success;
