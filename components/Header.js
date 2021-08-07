@@ -27,7 +27,7 @@ export default function Header() {
                         className='cursor-pointer'
                     />    
                 </div>
-                <div className='hidden sm:flex items-center h-10 rounded-md flex-grow bg-yellow-400 hover:bg-yellow-500'>
+                <div className='hidden sm:flex items-center h-10 rounded-md flex-grow bg-green-400 hover:bg-green-500'>
                     <input className='p-2 h-full w-6 flex-grow flex-shrink rounded-l-md focus:outline-none' type="text" />
                     <SearchIcon className='h-12 p-4' />
                 </div>

@@ -38,8 +38,8 @@ export default function Product({id, title, price, description, category, image}
         dispatch(addToBasket(product))
     }
     return (
-        <div className='relative flex flex-col m-5 bg-gray-600 text-white p-10 z-30'>
-            <p className='absolute top-2 right-2 text-xs italic text-gray-400'>{category}</p>
+        <div className='relative flex flex-col m-5 bg-gray-600 text-white p-10 z-30 cursor-pointer transition transform duration-300 ease-out hover:bg-gray-500 hover:scale-105 rounded-xl'>
+            <p className='absolute top-2 right-2 text-xs italic text-green-400'>{category}</p>
             <Image src={image} 
             width={200}
             height={200} 
@@ -48,7 +48,7 @@ export default function Product({id, title, price, description, category, image}
             <h4 className='my-3'>{title}</h4>
             <div className="flex">
             {Array(rating).fill().map((_, i)=>(
-                <StarIcon key={i} className='h-5 text-yellow-400' />
+                <StarIcon key={i} className='h-5 text-green-400' />
             ))}
             </div>
 

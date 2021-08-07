@@ -36,7 +36,7 @@ export default function Home({products}) {
 }
 
 export async function getServerSideProps() {
-  const products = await fetch('https://fakestoreapi.com/products')
+  const products = await fetch('https://amz-next.vercel.app/api/products')
   .then(
     (res)=> res.json()
   );

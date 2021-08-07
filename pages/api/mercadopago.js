@@ -29,7 +29,8 @@ export default (req, res) => {
 
     items: tranformsItems,
     payer: {
-      name: user.name,
+      first_name: user.name,
+      last_name: user.email,
       email: user.email,
     },
     back_urls: {

@@ -16,7 +16,7 @@ export default function CheckoutProducItem({ docId, id, title, price, descriptio
     }
     return (
         <div className='grid grid-cols-5'>
-            <Image src={image} height={200} width={200} />
+            <Image src={image} objectFit='contain' height={200} width={200} />
             <   div className='col-span-3 mx5'>
                 <p className=''>
                     {title}
