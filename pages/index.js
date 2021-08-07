@@ -40,8 +40,8 @@ export async function getServerSideProps(context) {
   const session = await getSession(context)
 
   const products = await fetch(
-    // 'https://amz-next.vercel.app/api/products'
-    'http://localhost:3000/api/products'
+    'https://amz-next.vercel.app/api/products'
+    // 'http://localhost:3000/api/products'
     )
   .then(
     (res)=> res.json()
