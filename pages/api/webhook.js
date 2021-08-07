@@ -8,16 +8,16 @@ const mercadopago = require('mercadopago');
 
 // Agrega credenciales
 mercadopago.configure({
-  access_token: process.env.ACCESS_TOKEN
+    access_token: process.env.ACCESS_TOKEN
 });
 
 const serviceAccount = require('../../amz-nextjs-firebase-adminsdk.json')
 
-const app = !admin.apps.length 
-? admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-})
-: admin.app();
+const app = !admin.apps.length
+    ? admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+    })
+    : admin.app();
 
 
 
@@ -34,34 +34,51 @@ export default async (req, res) => {
 
     //WEBHOOKS MERCADOPAGO
 
-   
+
 
     if (req.method === 'POST') {
         const { action, data } = req.body;
-        if( action === 'payment.created' ) {
-            
+        if (action === 'payment.created') {
+
             mercadopago.payment.capture(data.id, mercadopago, (error, response) => {
-                if (error){
+                if (error) {
                     console.log(error);
-                }else{
-                    const { card, id, additional_info, payer } = response.body;
+                } else {
+                    const { order, metadata } = response.body;
                     const db = app.firestore();
-                    console.log( response.body)
-                    db.collection('user').doc(payer.email).collection('ordenes').doc(`${id}`).set({
-                        email: payer.email,
-                        name: payer.name,
-                        title: additional_info.items[0].title,
-                        amount: additional_info.items[0].unit_price,
-                        image: additional_info.items[0].picture_url,
-                        paymentId: id
+                    mercadopago.merchant_orders.get(order.id).then(mercadopagoResponse => {
+                        const { items, total_amount } = mercadopagoResponse.body
+                        // console.log(mercadopagoResponse.body)
+                        //borrar los datos del carrito de compra
+
+                        db.collection('user').doc(metadata.email).collection('basket').get().then(doc => {
+                            const res = doc.docs
+                            const docID = res.map(doc => doc.id)
+                            docID.map(id => {
+                                db.collection('user').doc(metadata.email).collection('basket').doc(id).delete()
+                            } )
+                        })
+                        // mapear y guardar los datos de compra en firebase
+                        items.map(item => {
+                            // console.log(item)
+                            db.collection('user').doc(metadata.email).collection('ordenes').doc().set({
+                                    title: item.title,
+                                    amount: total_amount,
+                                    image: item.picture_url,
+                                    orderId: order.id,
+                                    description: item.description,
+                                    unit_price: item.unit_price
+                                })
+                        })
+
                     })
                 }
-            });    
+            });
 
             // console.log(req.body)
             res.status(200).json({ message: 'Payment Webhook Rcieved' })
         }
-        if( action === 'test.created' ) {
+        if (action === 'test.created') {
             res.status(200).json({ message: 'Payment Webhook test Rcieved' })
         }
     }

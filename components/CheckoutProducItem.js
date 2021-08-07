@@ -41,7 +41,7 @@ export default function CheckoutProducItem({ docId, id, title, price, descriptio
 
             </div>
             <div className='flex flex-col space-y-2 my-auto justify-self-end'>
-                <button onClick={removeBasket} className='mt-auto button'>Remove From the basket</button>
+                <button onClick={removeBasket} className='mt-auto button'>Quitar este Articulo</button>
             </div>
         </div>
     )

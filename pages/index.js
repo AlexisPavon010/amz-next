@@ -8,7 +8,7 @@ import ProductFeed from '../components/ProductFeed'
 import { useDispatch } from 'react-redux'
 import { addToBasket } from "../slices/basketReducer";
 import { db } from '../firebase'
-import { useSession } from 'next-auth/client'
+import { getSession, useSession } from 'next-auth/client'
 
 
 
@@ -35,15 +35,22 @@ export default function Home({products}) {
   )
 }
 
-export async function getServerSideProps() {
-  const products = await fetch('https://amz-next.vercel.app/api/products')
+export async function getServerSideProps(context) {
+
+  const session = await getSession(context)
+
+  const products = await fetch(
+    // 'https://amz-next.vercel.app/api/products'
+    'http://localhost:3000/api/products'
+    )
   .then(
     (res)=> res.json()
   );
 
   return {
     props: {
-      products
+      products,
+      session
     }
   }
 }

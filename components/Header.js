@@ -20,7 +20,7 @@ export default function Header() {
                 <div className='mt-2 flex items-center flex-grow sm:flex-grow-0'>
                     <Image
                         onClick={()=>{router.push('/')}}
-                        src='https://links.papareact.com/f90'
+                        src='https://images.cooltext.com/5545351.png'
                         width={150}
                         height={40}
                         objectFit='contain'
@@ -37,28 +37,29 @@ export default function Header() {
                         <p className='font-extrabold md:text-sm'>Account & Mas</p>
                     </div>
                     <div onClick={()=>{router.push('/orders')}} className='link'>
-                        <p>Order</p>
+                        <p>Ordenes</p>
                         <p className='font-extrabold md:text-sm'>Ordenes & Mas</p>
                     </div>
                     <div className='relative link flex' onClick={()=>{router.push('/checkout')}}>
-                        <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold'>{items.length}</span>
+                        <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-green-400 text-center rounded-full text-white font-bold'>{items.length}</span>
                         <ShoppingCartIcon className='h-10' />
                         <p className='hidden md:inline font-extrabold md:text-sm mt-2'>Carrito</p>
                     </div>
                 </div>
             </div>
-            <div className='flex items-center space-x-3 p-2 pl-6 bg-amazon_blue-ligth  text-white text-sm'>
-                <p className='link flex items-center'>
+            <div className='flex  items-center  p-2 pl-6 bg-amazon_blue-ligth  text-white text-sm'>
+                <div className="flex max-w-sm justify-between space-x-4">
+
+                {/* <p className='link flex items-center'>
                     <MenuIcon  className='h-6 mr-1'/>
-                </p>
-                <p className='link'>all videos</p>
-                <p className='link'>all videos</p>
-                <p className='link'>all videos</p>
-                <p className='link'>all videos</p>
-                <p className='link hidden lg:inline-flex'>all videos</p>
-                <p className='link hidden lg:inline-flex'>all videos</p>
-                <p className='link hidden lg:inline-flex'>all videos</p>
-                <p className='link hidden lg:inline-flex'>all videos</p>
+                </p> */}
+                
+                <p className='link'>Picadores</p>
+                <p className='link'>Encendedores</p>
+                <p className='link'>Papelillos</p>
+                <p className='link'>Pipas</p>
+                <p className='link'>Tabaco</p>
+                </div>
             </div>
         </header>
     )

@@ -26,13 +26,15 @@ export default (req, res) => {
 
   // Crea un objeto de preferencia
   const preference = {
-
-    items: tranformsItems,
     payer: {
-      first_name: user.name,
-      last_name: user.email,
-      email: user.email,
+      name: user.name,
+      surname: '',
+      email: user.email, 
     },
+    metadata: {
+      email: user.email
+    },
+    items: tranformsItems,
     back_urls: {
       success: 'https://amz-next.vercel.app/success',
       failure: 'https://amz-next.vercel.app/failure',
@@ -46,7 +48,7 @@ export default (req, res) => {
     .then(function (response) {
       const { init_point } = response.body;
       console.log(response.body)
-      res.send({init_point, preference,})
+      res.send({init_point,})
       // console.log(preference, payer)
 
     }).catch(function (error) {

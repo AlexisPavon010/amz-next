@@ -17,6 +17,10 @@ export const basketSlice = createSlice({
         },
         addToBasket: (state, action) => {
             const { session, id, title, price, description, category, image, } = action.payload
+            if(!session) {
+                alert('Inicia Sesion!')
+                return
+            }
             db.collection('user').doc(session.user.email).collection('basket').add({
                 id,
                 title,

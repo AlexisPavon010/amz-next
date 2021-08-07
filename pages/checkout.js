@@ -95,16 +95,16 @@ const Checkout = () => {
             <Header />
             <main className='lg:flex max-w-screen-2xl mx-auto'>
                 <div className='flex-grow'>
-                    <div className=''>
+                    {/* <div className=''>
                         <Image src='https://links.papareact.com/ikj'
                             width={1020}
                             height={250}
                             objectFit='contain'
                         />
-                    </div>
+                    </div> */}
                     <div className='flex flex-col p-5 space-y-10 bg-white'>
                         <h1 className='text-3xl border-b pb-4'>
-                            {items.length === 0 ? 'Tu Carrito esta vacio, graga un producto al carrito..' : 'Tu Carrito'}
+                            {items.length === 0 ? 'Tu Carrito esta vacio, agrega un producto al carrito..' : 'Tu Carrito'}
                         </h1>
                         {items.map((item, i) => (
                             <CheckoutProducItem
