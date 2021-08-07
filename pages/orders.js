@@ -24,8 +24,9 @@ export default function Orders({orders}) {
                     </h2>
                 : <p>Inicia Sesion para ver tus Ordenes</p>}
 
-                {orders?.map(({title, image, description, amount, orderId, unit_price}) => (
+                {orders?.map(({title, image, description, amount, orderId, unit_price}, i) => (
                     <Order 
+                    key={i}
                     title={title}
                     image={image}
                     description={description}
