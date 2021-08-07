@@ -6,15 +6,63 @@ import Banner from '../components/Banner'
 import Header from '../components/Header'
 import ProductFeed from '../components/ProductFeed'
 import { useDispatch } from 'react-redux'
-import { addToBasket } from "../slices/basketReducer";
+import { chageState, selectItems, selectTotal } from "../slices/basketReducer"
 import { db } from '../firebase'
 import { getSession, useSession } from 'next-auth/client'
 
 
 
-export default function Home({products}) {
+export default function Home({ products, basketItems }) {
+
+  // console.log(basketItems)
   const dispatch = useDispatch()
-  const [session] = useSession()
+
+
+
+
+
+  useEffect(() => {
+    const addItemToBasket = () => {
+      basketItems.map(i => {
+        console.log(i)
+        const product = {
+          ...i
+        };
+        console.log(product)
+        dispatch(chageState(product))
+      })
+    }
+    console.log(basketItems.length)
+
+    if(basketItems.length === 0) {
+      console.log('asdasd')
+      return
+    }
+    else if( basketItems.length === 0 && basketItems.length ) {
+      console.log('asdasd')
+      return
+    }
+    else if(basketItems.length > 0) {
+      addItemToBasket()
+      console.log('nose')
+    }
+
+    // switch (basketItems) {
+    //   case basketItems.length > 0:
+    //     console.log('object')
+    //     addItemToBasket();
+    //     break;
+    //   case basketItems.length === 0:
+    //     console.log('sad')
+    //     break;
+    //   case basketItems.length > 0:
+    //     addItemToBasket();
+    //   default:
+    //     break;
+    // }
+
+   
+  }, [])
 
 
   return (
@@ -25,7 +73,7 @@ export default function Home({products}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header/>
+      <Header />
 
       <main className='max-w-screen-2xl mx-auto'>
         <Banner />
@@ -39,16 +87,21 @@ export async function getServerSideProps(context) {
 
   const session = await getSession(context)
 
+  const getbasketitems = await db.collection('user').doc(session?.user?.email).collection('basket').get()
+  const res = getbasketitems.docs
+  const items = res.map(doc => doc.data())
+
   const products = await fetch(
     'https://amz-next.vercel.app/api/products'
     // 'http://localhost:3000/api/products'
-    )
-  .then(
-    (res)=> res.json()
-  );
+  )
+    .then(
+      (res) => res.json()
+    );
 
   return {
     props: {
+      basketItems: items,
       products,
       session
     }

@@ -5,9 +5,14 @@ import { useDispatch } from 'react-redux'
 import { removeFromBasket } from '../slices/basketReducer'
 import { useSession } from "next-auth/client";
 
-export default function CheckoutProducItem({ docId, id, title, price, description, rating, category, image, hasPrime }) {
+export default function CheckoutProducItem({item}) {
+    const {docId, id} = item
+    console.log(docId, id)
+    
+    
     const dispatch = useDispatch()
     const [session] = useSession()
+
 
     const removeBasket = () => {
         dispatch(removeFromBasket({
@@ -16,22 +21,24 @@ export default function CheckoutProducItem({ docId, id, title, price, descriptio
     }
     return (
         <div className='grid grid-cols-5'>
-            <Image src={image} objectFit='contain' height={200} width={200} />
+        
+            <Image src={item?.image} objectFit='contain' height={200} width={200} />
             <   div className='col-span-3 mx5'>
                 <p className=''>
-                    {title}
+                    {item.title}
                 </p>
                 <div>
-                    {Array(rating).fill().map((_, i) => (
+                    {Array(item?.rating).fill().map((_, i) => (
                         <StarIcon key={i} className='h-5 text-yellow-400' />
                     ))}
                 </div>
                 <p className='text-xs my-2 line-clamp-3'>
-                    {description}
+                    {item?.description}
                 </p>
-                <Currency value={price} currency='GBP' prefix={'$'} />
+                {/* <Currency value={item?.price} currency='GBP' prefix={'$'} /> */}
+                <p>${item?.price} </p>
 
-                {hasPrime && (
+                {item?.hasPrime && (
                     <div className="felx items-center space-x-2">
                         <Image layout='fill' loading='lazy' className='w-12' src="https://links.papareact.com/fdw" alt="" />
                         <p className='tetx-xs text-gray-500'>Freee</p>

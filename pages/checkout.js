@@ -106,41 +106,36 @@ const Checkout = () => {
                         <h1 className='text-3xl border-b pb-4'>
                             {items.length === 0 ? 'Tu Carrito esta vacio, agrega un producto al carrito..' : 'Tu Carrito'}
                         </h1>
-                        {items.map((item, i) => (
+                        {items?.map((item, i) => (
+                            console.log(items),
                             <CheckoutProducItem
                                 key={i}
-                                id={item.id}
-                                title={item.title}
-                                price={item.price}
-                                description={item.description}
-                                category={item.category}
-                                image={item.image}
-                                docId={item.do}
+                                item={item}
                             />
                         ))}
                     </div>
                 </div>
                 <div>
                     {items.length > 0 && (
-                        <div className='flex flex-col p-5 space-y-5 bg-white'>
+                        <div className='flex flex-col p-5 mb-10 space-y-5 bg-white'>
                             <h2 className='whitespace-nowrap'>
                                 Subtotal ({items.length} items):
                                 <span className='font-bold'>
-                                    {total}
+                                    TOTAL ${total}
                                     {/* <Currency quantity={total} urrency='GBP' /> */}
                                 </span>
                             </h2>
+                            <button
+                                onClick={mercadoPayment}
+                                role='link'
+                                className={`button-mercadopago ${!session && 'from-gray-300'}`}>
+                                {!session ? 'Iniciar' : 'Pagar con Mercado Pago'}
+                            </button>
                             <button
                                 onClick={createCheckAoutSession}
                                 role='link'
                                 className={`button ${!session && 'from-gray-300'}`}>
                                 {!session ? 'Iniciar' : 'Pagar con Stripe'}
-                            </button>
-                            <button
-                                onClick={mercadoPayment}
-                                role='link'
-                                className={`button ${!session && 'from-gray-300'}`}>
-                                {!session ? 'Iniciar' : 'Pagar con Mercado Pago'}
                             </button>
                         </div>
                     )}
