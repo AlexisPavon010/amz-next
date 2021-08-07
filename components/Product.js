@@ -38,7 +38,7 @@ export default function Product({id, title, price, description, category, image}
         dispatch(addToBasket(product))
     }
     return (
-        <div onClick={()=> router.push(`/product/${id}`) } className='relative flex flex-col m-5 bg-gray-600 text-white p-10 z-30 cursor-pointer rounded-xl'>
+        <div className='relative flex flex-col m-5 bg-gray-600 text-white p-10 z-30 cursor-pointer rounded-xl'>
             <p className='absolute top-2 right-2 text-xs italic text-green-400'>{category}</p>
             <Image src={image} 
             width={200}
