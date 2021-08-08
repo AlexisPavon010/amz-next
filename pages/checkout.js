@@ -4,7 +4,7 @@ import Header from "../components/Header"
 import { chageState, selectItems, selectTotal } from "../slices/basketReducer"
 import CheckoutProducItem from '../components/CheckoutProducItem'
 import Currency from "react-currency-format"
-import { useSession } from "next-auth/client"
+import { getSession, useSession } from "next-auth/client"
 import { loadStripe } from "@stripe/stripe-js"
 import axios from "axios"
 import { useRouter } from 'next/router'
@@ -13,7 +13,7 @@ import { db } from "../firebase"
 
 const stripePromise = loadStripe(process.env.stripe_public_key)
 
-const Checkout = () => {
+const Checkout = ({Items}) => {
 
 
     // const [items, setState] = useState([])
@@ -21,34 +21,27 @@ const Checkout = () => {
     const dispatch = useDispatch()
 
 
-
     useEffect(() => {
-        db.collection('user').doc(session?.user.email).collection('basket').get().then(r => {
-            const res = r.docs
-            const items = res.map(doc => doc.data())
-            console.log(items.length)
-            // setState(items)
-            if (items.length === 0) {
-                return
-            }
-            
-            const addItemToBasket = () => {
-                items.map(i => {
-                    console.log(i)
-                    const product = {
-                        ...i
-                    };
-                    console.log(product)
-                    dispatch(chageState(product))
-                }) 
-            }
-          
+        const addItemToBasket = () => {
+          Items.map(i => {
+            const product = {
+              ...i
+            };
+            // console.log(product)
+            dispatch(chageState(product))
+          })
+        }
+        console.log(Items.length)
+        // if(Items.length > 0) {
+        //     console.log('no hay nada')
+        //     return
+        //   }
+     
+        addItemToBasket()
+       
+      }, [])
+    
 
-            addItemToBasket()
-                     
-          
-        })
-    }, [])
 
     const items = useSelector(selectItems)
     const total = useSelector(selectTotal)
@@ -107,7 +100,7 @@ const Checkout = () => {
                             {items.length === 0 ? 'Tu Carrito esta vacio, agrega un producto al carrito..' : 'Tu Carrito'}
                         </h1>
                         {items?.map((item, i) => (
-                            console.log(items),
+                            // console.log(items),
                             <CheckoutProducItem
                                 key={i}
                                 item={item}
@@ -149,10 +142,17 @@ export default Checkout;
 
 export async function getServerSideProps(context) {
 
+    const session = await getSession(context)
+    // console.log(session)
 
+    const getbasketitems = await db.collection('user').doc(session?.user?.email).collection('basket').get()
+    const res = getbasketitems.docs
+    const items = res.map(doc => doc.data())
+    // console.log(items)
 
     return {
         props: {
+            Items: items
 
         }
     }

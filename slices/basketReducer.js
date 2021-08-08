@@ -12,9 +12,9 @@ export const basketSlice = createSlice({
     initialState,
     reducers: {
         chageState: (state, action) => {
-            console.log(action.payload)
-            state.items = [...initialState.items]
-            state.items = [...state.items, action.payload]
+            // console.log(action.payload)
+            state.items = [...initialState.items,  action.payload]
+            // state.items = [...state.items, action.payload]
         },
         addToBasket: (state, action) => {
             const { session, id, title, price, description, category, image, } = action.payload
@@ -45,7 +45,7 @@ export const basketSlice = createSlice({
             console.log(action.payload)
             
             db.collection('user').doc(session.user.email).collection('basket').doc(docId).delete()
-
+            state.items = [...initialState.items,  action.payload]
             const index = state.items.findIndex(
                 (basketItem) => basketItem.id === action.payload.id
             );

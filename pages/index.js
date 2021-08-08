@@ -24,43 +24,16 @@ export default function Home({ products, basketItems }) {
   useEffect(() => {
     const addItemToBasket = () => {
       basketItems.map(i => {
-        console.log(i)
+        // console.log(i)
         const product = {
           ...i
         };
-        console.log(product)
+        // console.log(product)
         dispatch(chageState(product))
       })
     }
     console.log(basketItems.length)
-
-    if(basketItems.length === 0) {
-      console.log('asdasd')
-      return
-    }
-    else if( basketItems.length === 0 && basketItems.length ) {
-      console.log('asdasd')
-      return
-    }
-    else if(basketItems.length > 0) {
-      addItemToBasket()
-      console.log('nose')
-    }
-
-    // switch (basketItems) {
-    //   case basketItems.length > 0:
-    //     console.log('object')
-    //     addItemToBasket();
-    //     break;
-    //   case basketItems.length === 0:
-    //     console.log('sad')
-    //     break;
-    //   case basketItems.length > 0:
-    //     addItemToBasket();
-    //   default:
-    //     break;
-    // }
-
+    addItemToBasket()
    
   }, [])
 

@@ -7,7 +7,7 @@ import { useSession } from "next-auth/client";
 
 export default function CheckoutProducItem({item}) {
     const {docId, id} = item
-    console.log(docId, id)
+    // console.log(docId, id)
     
     
     const dispatch = useDispatch()
