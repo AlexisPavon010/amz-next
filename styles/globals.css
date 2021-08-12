@@ -2,6 +2,9 @@ html
 ::-webkit-scrollbar {
  display: none;
 }
+html {
+  background-color: #131921;
+}
 body {
   padding: 0;
   margin: 0;
