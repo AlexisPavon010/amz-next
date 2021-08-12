@@ -42,7 +42,7 @@ export default function CategorySpecific({resultado}) {
     return (
         <>
             <Header />
-            <main className='max-w-screen mx-auto h-full p-10  bg-amazon_blue'>
+            <main className='max-w-screen mx-auto h-screen p-10  bg-amazon_blue'>
 
                 <div className='grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 '>
                     {   
