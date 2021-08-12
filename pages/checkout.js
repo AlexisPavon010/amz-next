@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useDispatch, useSelector } from "react-redux"
 import Header from "../components/Header"
-import { chageState, selectItems, selectTotal } from "../slices/basketReducer"
+import { addToBasket, chageState, getTotalItems, getCartTotal } from "../slices/basketReducer"
 import CheckoutProducItem from '../components/CheckoutProducItem'
 import Currency from "react-currency-format"
 import { getSession, useSession } from "next-auth/client"
@@ -13,39 +13,19 @@ import { db } from "../firebase"
 
 const stripePromise = loadStripe(process.env.stripe_public_key)
 
-const Checkout = ({Items}) => {
+const Checkout = () => {
 
 
-    // const [items, setState] = useState([])
+    const [Items, setState] = useState([])
     const [session] = useSession()
     const dispatch = useDispatch()
 
-
-    useEffect(() => {
-        const addItemToBasket = () => {
-          Items.map(i => {
-            const product = {
-              ...i
-            };
-            // console.log(product)
-            dispatch(chageState(product))
-          })
-        }
-        console.log(Items.length)
-        // if(Items.length > 0) {
-        //     console.log('no hay nada')
-        //     return
-        //   }
-     
-        addItemToBasket()
-       
-      }, [])
-    
-
-
-    const items = useSelector(selectItems)
-    const total = useSelector(selectTotal)
+    const items = useSelector(getTotalItems)
+    const total = useSelector(getCartTotal)
     const router = useRouter()
+    // console.log(items?.map(i => console.log(JSON.parse(i))))
+
+    // console.log(total)
 
     const createCheckAoutSession = async () => {
         const stripe = await stripePromise;
@@ -99,13 +79,13 @@ const Checkout = ({Items}) => {
                         <h1 className='text-3xl border-b pb-4'>
                             {items.length === 0 ? 'Tu Carrito esta vacio, agrega un producto al carrito..' : 'Tu Carrito'}
                         </h1>
-                        {items?.map((item, i) => (
-                            // console.log(items),
-                            <CheckoutProducItem
-                                key={i}
-                                item={item}
-                            />
-                        ))}
+                        {
+                            items?.map((item, i) => (
+                                <CheckoutProducItem
+                                    key={i}
+                                    item={JSON.parse(item)}
+                                />
+                            ))}
                     </div>
                 </div>
                 <div>
@@ -140,21 +120,3 @@ const Checkout = ({Items}) => {
 
 export default Checkout;
 
-export async function getServerSideProps(context) {
-
-    const session = await getSession(context)
-    // console.log(session)
-
-    const getbasketitems = await db.collection('user').doc(session?.user?.email).collection('basket').get()
-    const res = getbasketitems.docs
-    const items = res.map(doc => doc.data())
-    // console.log(items)
-
-    return {
-        props: {
-            Items: items
-
-        }
-    }
-
-}

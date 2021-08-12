@@ -6,35 +6,31 @@ import Banner from '../components/Banner'
 import Header from '../components/Header'
 import ProductFeed from '../components/ProductFeed'
 import { useDispatch } from 'react-redux'
-import { chageState, selectItems, selectTotal } from "../slices/basketReducer"
+import { chageState, addToBasket, selectItems, selectTotal, restoreCart } from "../slices/basketReducer"
 import { db } from '../firebase'
-import { getSession, useSession } from 'next-auth/client'
+import { getSession, session, useSession } from 'next-auth/client'
 
 
 
-export default function Home({ products, basketItems }) {
+export default function Home({ products }) {
 
-  // console.log(basketItems)
   const dispatch = useDispatch()
-
-
-
+  const [session] = useSession()
 
 
   useEffect(() => {
-    const addItemToBasket = () => {
-      basketItems.map(i => {
-        // console.log(i)
-        const product = {
-          ...i
-        };
-        // console.log(product)
-        dispatch(chageState(product))
-      })
+    const localCart = localStorage.getItem("cart");
+
+    if (localCart) {
+      dispatch(
+        restoreCart(
+          { cart: JSON.parse(localCart) },
+
+        )
+      );
     }
-    console.log(basketItems.length)
-    addItemToBasket()
-   
+
+
   }, [])
 
 
@@ -60,9 +56,9 @@ export async function getServerSideProps(context) {
 
   const session = await getSession(context)
 
-  const getbasketitems = await db.collection('user').doc(session?.user?.email).collection('basket').get()
-  const res = getbasketitems.docs
-  const items = res.map(doc => doc.data())
+  // const getbasketitems = await db.collection('user').doc(session?.user?.email).collection('basket').get()
+  // const res = getbasketitems.docs
+  // const items = res.map(doc => doc.data())
 
   const products = await fetch(
     'https://amz-next.vercel.app/api/products'
@@ -74,7 +70,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      basketItems: items,
+      // basketItems: items,
       products,
       session
     }

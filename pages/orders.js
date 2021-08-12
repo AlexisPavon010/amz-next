@@ -6,7 +6,7 @@ import { db } from '../firebase'
 
 
 export default function Orders({orders}) {
-    console.log(orders)
+    // console.log(orders)
     const [session] = useSession()
 
 
@@ -43,7 +43,7 @@ export default function Orders({orders}) {
 export async function getServerSideProps (context) {
 
     const session = await getSession(context) 
-    console.log(session?.user?.email)
+    // console.log(session?.user?.email)
 
     if(!session){
         return {

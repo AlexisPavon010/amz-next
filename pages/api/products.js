@@ -8,6 +8,7 @@ export default function handler(req, res) {
       "price": 109.95,
       "description": "Your perfect pack Encendedor for everyday use and walks in the forest. Stash your Encendedor (up to 15 inches) in the padded sleeve, your everyday",
       "category": "Encendedor",
+      "quantity": 1,
       "image": "https://instagram.fcnq2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/170146171_269041804954267_4819044613500266775_n.jpg?_nc_ht=instagram.fcnq2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=TbgFS61U0nwAX_d6_9t&edm=AP_V10EBAAAA&ccb=7-4&oh=02115f50f85bfb13965c9f5c2f5694ac&oe=6114BEEE&_nc_sid=4f375e"
     },
     {
@@ -16,6 +17,7 @@ export default function handler(req, res) {
       "price": 160.95,
       "description": "Your perfect pack Picador for everyday use and walks in the forest. Stash your Picador (up to 15 inches) in the padded sleeve, your everyday",
       "category": "Picadores",
+      "quantity": 1,
       "image": "https://instagram.fcnq2-2.fna.fbcdn.net/v/t51.2885-15/e35/170844835_1421949684815348_2456167423386893400_n.jpg?_nc_ht=instagram.fcnq2-2.fna.fbcdn.net&_nc_cat=108&_nc_ohc=7NpL3t9E1y8AX8ZFGb3&edm=AABBvjUBAAAA&ccb=7-4&oh=ae3ce11ae2d20085c8a444eccef248e6&oe=6113B570&_nc_sid=83d603"
     },
     {
@@ -24,6 +26,7 @@ export default function handler(req, res) {
       "price": 1950.95,
       "description": "Your perfect pack Picador for everyday use and walks in the forest. Stash your Picador (up to 15 inches) in the padded sleeve, your everyday",
       "category": "Picadores",
+      "quantity": 1,
       "image": "https://instagram.fcnq2-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/170122699_848087969254917_6611712061296686961_n.jpg?_nc_ht=instagram.fcnq2-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=7AodMkW5OckAX-pYDtC&edm=AP_V10EBAAAA&ccb=7-4&oh=cf0a8156553046defb013fc81bb60146&oe=6115AB9D&_nc_sid=4f375e"
     },
     {
@@ -31,7 +34,7 @@ export default function handler(req, res) {
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
       "price": 109.95,
       "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-      "category": "men's clothing",
+      "category": "Encendedor",
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
     },
     {

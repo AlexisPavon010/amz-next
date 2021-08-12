@@ -6,8 +6,8 @@ import { removeFromBasket } from '../slices/basketReducer'
 import { useSession } from "next-auth/client";
 
 export default function CheckoutProducItem({item}) {
-    const {docId, id} = item
-    // console.log(docId, id)
+    const {id} = item
+    // console.log(item)
     
     
     const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export default function CheckoutProducItem({item}) {
 
     const removeBasket = () => {
         dispatch(removeFromBasket({
-            id, docId, session
+            id
         }));
     }
     return (
@@ -25,7 +25,7 @@ export default function CheckoutProducItem({item}) {
             <Image src={item?.image} objectFit='contain' height={200} width={200} />
             <   div className='col-span-3 mx5'>
                 <p className=''>
-                    {item.title}
+                    {item?.title}
                 </p>
                 <div>
                     {Array(item?.rating).fill().map((_, i) => (
