@@ -50,7 +50,7 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            <div className='flex  items-center overflow-scroll  p-2 pl-6 bg-amazon_blue-ligth  text-white text-sm'>
+            <div className='flex  items-center  scroll overflow-y-auto  p-2 pl-6 bg-amazon_blue-ligth  text-white text-sm'>
                 <div className="flex max-w-sm justify-between space-x-4">
 
                     {/* <p className='link flex items-center'>
