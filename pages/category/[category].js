@@ -134,7 +134,7 @@ export async function getServerSideProps(context) {
     const item = await fetch(
         //     // `https://amz-next.vercel.app/api/products/${id}`
         // `http://localhost:3000/api/category/${category}`
-            `http://localhost:3000/api/products`
+            `${process.env.HOST}/api/products`
     )
         .then(
             (res) => res.json()
