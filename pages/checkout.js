@@ -10,6 +10,7 @@ import axios from "axios"
 import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
 import { db } from "../firebase"
+import Head from 'next/head'
 
 const stripePromise = loadStripe(process.env.stripe_public_key)
 
@@ -65,6 +66,11 @@ const Checkout = () => {
 
     return (
         <div className='bg-gray-200'>
+            <Head>
+                <title>Comprando - Parafernalia</title>
+                <meta name="description" content="E-commerce de Articulos para fumadores - Parafernalia" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Header />
             <main className='lg:flex max-w-screen-2xl mx-auto'>
                 <div className='flex-grow'>
