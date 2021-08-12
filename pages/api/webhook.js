@@ -48,16 +48,17 @@ export default async (req, res) => {
                     const db = app.firestore();
                     mercadopago.merchant_orders.get(order.id).then(mercadopagoResponse => {
                         const { items, total_amount } = mercadopagoResponse.body
-                        // console.log(mercadopagoResponse.body)
+                        console.log(mercadopagoResponse.body)
                         //borrar los datos del carrito de compra
+                        
 
-                        db.collection('user').doc(metadata.email).collection('basket').get().then(doc => {
-                            const res = doc.docs
-                            const docID = res.map(doc => doc.id)
-                            docID.map(id => {
-                                db.collection('user').doc(metadata.email).collection('basket').doc(id).delete()
-                            } )
-                        })
+                        // db.collection('user').doc(metadata.email).collection('basket').get().then(doc => {
+                        //     const res = doc.docs
+                        //     const docID = res.map(doc => doc.id)
+                        //     docID.map(id => {
+                        //         db.collection('user').doc(metadata.email).collection('basket').doc(id).delete()
+                        //     } )
+                        // })
                         // mapear y guardar los datos de compra en firebase
                         items.map(item => {
                             // console.log(item)
@@ -73,7 +74,7 @@ export default async (req, res) => {
 
                     })
                 }
-            });
+            })
 
             // console.log(req.body)
             res.status(200).json({ message: 'Payment Webhook Rcieved' })
