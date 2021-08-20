@@ -48,7 +48,7 @@ export default async (req, res) => {
                     const db = app.firestore();
                     mercadopago.merchant_orders.get(order.id).then(mercadopagoResponse => {
                         const { items, total_amount } = mercadopagoResponse.body
-                        // console.log(mercadopagoResponse.body)
+                        console.log(mercadopagoResponse)
                         //borrar los datos del carrito de compra
                         
 

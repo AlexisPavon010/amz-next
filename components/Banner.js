@@ -30,7 +30,7 @@ export default function Banner() {
                 </div>
                 <div>
                     <Image objectFit='cover' width='1920' height='920' loading='lazy'
-                    src='https://instagram.fcnq2-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s750x750/170122699_848087969254917_6611712061296686961_n.jpg?_nc_ht=instagram.fcnq2-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=7AodMkW5OckAX-pYDtC&edm=AP_V10EBAAAA&ccb=7-4&oh=10e07300dcde390c944b7a298918548d&oe=61146799&_nc_sid=4f375e'
+                    src='https://instagram.fcnq2-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/170122699_848087969254917_6611712061296686961_n.jpg?_nc_ht=instagram.fcnq2-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=mr3S1SmbFMcAX-ujhlJ&edm=AP_V10EBAAAA&ccb=7-4&oh=2231e4257a72c38d47336c9a8c08f291&oe=612777DD&_nc_sid=4f375e'
                     // src="https://links.papareact.com/7ma" 
                     alt="" />
                 </div>

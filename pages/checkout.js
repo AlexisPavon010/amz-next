@@ -11,6 +11,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
 import { db } from "../firebase"
 import Head from 'next/head'
+import DeliveryAddress from "../components/DeliveryAddress"
+
 
 const stripePromise = loadStripe(process.env.stripe_public_key)
 
@@ -97,6 +99,9 @@ const Checkout = () => {
                 <div>
                     {items.length > 0 && (
                         <div className='flex flex-col p-5 mb-10 space-y-5 bg-white'>
+                            <div>
+                                <DeliveryAddress />
+                            </div>
                             <h2 className='whitespace-nowrap'>
                                 Subtotal ({items.length} items):
                                 <span className='font-bold'>

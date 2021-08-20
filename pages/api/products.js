@@ -27,7 +27,7 @@ export default function handler(req, res) {
       "description": "Your perfect pack Picador for everyday use and walks in the forest. Stash your Picador (up to 15 inches) in the padded sleeve, your everyday",
       "category": "Picadores",
       "quantity": 1,
-      "image": "https://instagram.fcnq2-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/170122699_848087969254917_6611712061296686961_n.jpg?_nc_ht=instagram.fcnq2-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=7AodMkW5OckAX-pYDtC&edm=AP_V10EBAAAA&ccb=7-4&oh=cf0a8156553046defb013fc81bb60146&oe=6115AB9D&_nc_sid=4f375e"
+      "image": "https://instagram.fcnq2-2.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/170122699_848087969254917_6611712061296686961_n.jpg?_nc_ht=instagram.fcnq2-2.fna.fbcdn.net&_nc_cat=109&_nc_ohc=mr3S1SmbFMcAX-ujhlJ&edm=AP_V10EBAAAA&ccb=7-4&oh=2231e4257a72c38d47336c9a8c08f291&oe=612777DD&_nc_sid=4f375e"
     },
     {
       "id": 1,
