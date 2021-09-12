@@ -132,9 +132,9 @@ export async function getServerSideProps(context) {
     const { category } = context.query;
 
     const item = await fetch(
-        //     // `https://amz-next.vercel.app/api/products/${id}`
+            `https://amz-next.vercel.app/api/products`
         // `http://localhost:3000/api/category/${category}`
-            `${process.env.HOST}/api/products`
+            // `${process.env.HOST}/api/products`
     )
         .then(
             (res) => res.json()
