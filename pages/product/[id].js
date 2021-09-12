@@ -7,6 +7,8 @@ import Header from "../../components/Header"
 import Product from "../../components/Product"
 import { addToBasket } from "../../slices/basketReducer"
 import { motion } from "framer-motion";
+import Head from 'next/head'
+
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
@@ -55,8 +57,13 @@ export default function ProductSpecific({ product }) {
 
     return (
         <>
+            <Head>
+                <title>{title}</title>
+                <meta name="description" content={description} />
+                <link rel="icon" href="/logo.jpg" />
+            </Head>
             <Header />
-            <main className='max-w-screen-lg mx-auto p-5'>
+            <main className='max-w-screen-lg h-full mx-auto'>
                 <motion.div
                     initial="initial"
                     animate="in"
@@ -117,8 +124,8 @@ export async function getServerSideProps(context) {
     // console.log(id)
 
     const products = await fetch(
-        `${process.env.HOST}/api/product/${id}`
-        // `http://localhost:3000/api/product/${id}`
+        // `${process.env.HOST}/api/product/${id}`
+        `http://localhost:3000/api/product/${id}`
         // 'http://localhost:3000/api/products'
     )
         .then(

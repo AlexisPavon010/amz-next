@@ -7,6 +7,7 @@ import { addToBasket } from "../slices/basketReducer";
 import { useSession } from "next-auth/client";
 import { db } from "../firebase";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion"
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
@@ -14,20 +15,25 @@ const MIN_RATING = 1;
 
 export default function Product({ id, title, price, description, category, image }) {
 
+    const pageTransition = {
+        type: "tween",
+        duration: 0.2,
+    };
+
     const pageZoom = {
         initial: {
-          opacity: 0,
-          scale: 0.95,
+            opacity: 0,
+            scale: 0.95,
         },
         in: {
-          opacity: 1,
-          scale: 1,
+            opacity: 1,
+            scale: 1,
         },
         out: {
-          opacity: 0,
-          scale: 0.95,
+            opacity: 0,
+            scale: 0.95,
         },
-      };
+    };
 
     const [session] = useSession()
     const router = useRouter()
@@ -52,6 +58,14 @@ export default function Product({ id, title, price, description, category, image
         dispatch(addToBasket(product))
     }
     return (
+        <motion.div
+        key={id}
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageZoom}
+        transition={pageTransition}
+    >
         <div className='relative flex justify-items-center flex-col m-5 bg-gray-600 text-white p-10 z-30 cursor-pointer rounded-xl'>
             <p className='absolute top-2 right-2 text-xs italic text-green-400'>{category}</p>
             
@@ -71,7 +85,7 @@ export default function Product({ id, title, price, description, category, image
                 <p className='text-xs my-2'>{description}</p>
 
                 <div className='mb-5'>
-                    <p>{price}</p>
+                    <p>${price}</p>
                     {/* <Currency  value={price} currency='GBP' prefix={'$'}/> */}
                 </div>
 
@@ -85,5 +99,6 @@ export default function Product({ id, title, price, description, category, image
 
 
         </div>
+        </motion.div>
     )
 }

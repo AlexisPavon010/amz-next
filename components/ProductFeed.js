@@ -1,41 +1,12 @@
 import Product from "./Product"
 import Image from 'next/image'
-import { motion } from "framer-motion"
 
 export default function ProductFeed({ products }) {
-    const pageTransition = {
-        type: "tween",
-        duration: 0.2,
-    };
-
-    const pageZoom = {
-        initial: {
-            opacity: 0,
-            scale: 0.95,
-        },
-        in: {
-            opacity: 1,
-            scale: 1,
-        },
-        out: {
-            opacity: 0,
-            scale: 0.95,
-        },
-    };
-
     return (
         <div className='grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 z-50 bg-amazon_blue'>
 
 
             {products.map(({ id, title, price, description, category, image }) => (
-                <motion.div
-                    key={id}
-                    initial="initial"
-                    animate="in"
-                    exit="out"
-                    variants={pageZoom}
-                    transition={pageTransition}
-                >
                     <Product
                         key={id}
                         id={id}
@@ -45,7 +16,6 @@ export default function ProductFeed({ products }) {
                         category={category}
                         image={image}
                     />
-                </motion.div>
             )
             )}
 

@@ -17,12 +17,7 @@ import DeliveryAddress from "../components/DeliveryAddress"
 const stripePromise = loadStripe(process.env.stripe_public_key)
 
 const Checkout = () => {
-
-
-    const [Items, setState] = useState([])
     const [session] = useSession()
-    const dispatch = useDispatch()
-
     const items = useSelector(getTotalItems)
     const total = useSelector(getCartTotal)
     const router = useRouter()
@@ -71,7 +66,7 @@ const Checkout = () => {
             <Head>
                 <title>Comprando - Parafernalia</title>
                 <meta name="description" content="E-commerce de Articulos para fumadores - Parafernalia" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/logo.jpg" />
             </Head>
             <Header />
             <main className='lg:flex max-w-screen-2xl mx-auto'>
@@ -109,18 +104,29 @@ const Checkout = () => {
                                     {/* <Currency quantity={total} urrency='GBP' /> */}
                                 </span>
                             </h2>
-                            <button
-                                onClick={mercadoPayment}
-                                role='link'
-                                className={`button-mercadopago ${!session && 'from-gray-300'}`}>
-                                {!session ? 'Iniciar' : 'Pagar con Mercado Pago'}
-                            </button>
-                            <button
-                                onClick={createCheckAoutSession}
-                                role='link'
-                                className={`button ${!session && 'from-gray-300'}`}>
-                                {!session ? 'Iniciar' : 'Pagar con Stripe'}
-                            </button>
+                            {session
+                                ?
+                                <>
+                                    <button
+                                        onClick={mercadoPayment}
+                                        role='link'
+                                        className={`button-mercadopago ${!session && 'from-gray-300'}`}>
+                                        Pagar con Mercado Pago
+                                    </button>
+                                    <button
+                                        onClick={createCheckAoutSession}
+                                        role='link'
+                                        className={`button ${!session && 'from-gray-300'}`}>
+                                        'Pagar con Stripe
+                                    </button>
+                                </>
+                                :
+                                <button
+                                    onClick={()=> router.push('login')}
+                                    role='link'
+                                    className={`button ${!session && 'from-gray-300'}`}>
+                                    Iniciar Sesion
+                                </button>}
                         </div>
                     )}
                 </div>

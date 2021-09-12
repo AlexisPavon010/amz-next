@@ -53,9 +53,9 @@ export default function Header() {
             <div className='flex  items-center  scroll overflow-y-auto  p-2 pl-6 bg-amazon_blue-ligth  text-white text-sm'>
                 <div className="flex max-w-sm justify-between space-x-4">
 
-                    {/* <p className='link flex items-center'>
+                    <p className='link flex items-center'>
                     <MenuIcon  className='h-6 mr-1'/>
-                </p> */}
+                </p>
 
                     <p onClick={() => { router.push('/category/Picadores') }} className='link'>Picadores</p>
                     <p onClick={() => { router.push('/category/Encendedor') }} className='link'>Encendedores</p>

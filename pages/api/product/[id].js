@@ -12,7 +12,7 @@ export default function handler(req, res) {
           "price": 109.95,
           "description": "Your perfect pack Encendedor for everyday use and walks in the forest. Stash your Encendedor (up to 15 inches) in the padded sleeve, your everyday",
           "category": "Encendedor",
-          "image": "https://instagram.fcnq2-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/p640x640/170146171_269041804954267_4819044613500266775_n.jpg?_nc_ht=instagram.fcnq2-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=TbgFS61U0nwAX_d6_9t&edm=AP_V10EBAAAA&ccb=7-4&oh=02115f50f85bfb13965c9f5c2f5694ac&oe=6114BEEE&_nc_sid=4f375e"
+          "image": "https://firebasestorage.googleapis.com/v0/b/amz-nextjs.appspot.com/o/productsImages%2F170146171_269041804954267_4819044613500266775_n.jpg?alt=media&token=a3a5febe-41b4-43f4-ae6d-5bc376244cda"
         },
         {
           "id": 22,

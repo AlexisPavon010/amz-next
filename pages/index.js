@@ -20,8 +20,10 @@ export default function Home({ products }) {
 
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
+    console.log(localCart)
 
     if (localCart) {
+
       dispatch(
         restoreCart(
           { cart: JSON.parse(localCart) },
