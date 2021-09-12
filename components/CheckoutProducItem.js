@@ -51,62 +51,62 @@ export default function CheckoutProducItem({item}) {
         //         <button onClick={removeBasket} className='mt-auto button'>Quitar este Articulo</button>
         //     </div>
         // </div>
-        <div class="flex ">
-                    <div class="flex-none w-48 relative">
+        <div className="flex ">
+                    <div className="flex-none w-48 relative">
                       <Image  objectFit='cover' layout='fill' src={item?.image} />
                     </div>
-                    <form class="flex-auto p-6">
-                      <div class="flex flex-wrap">
-                        <h1 class="flex-auto text-xl font-semibold">
+                    <form className="flex-auto p-6">
+                      <div className="flex flex-wrap">
+                        <h1 className="flex-auto text-xl font-semibold">
                           {item?.title}
                         </h1>
-                        <div class="text-xl font-semibold text-gray-500">
+                        <div className="text-xl font-semibold text-gray-500">
                           ${item?.price}
                         </div>
-                        <div class="w-full flex-none text-sm font-medium text-gray-500 mt-2">
+                        <div className="w-full flex-none text-sm font-medium text-gray-500 mt-2">
                           In stock
                         </div>
                       </div>
-                      <div class="flex items-baseline mt-4 mb-6">
-                        <div class="space-x-2 flex">
+                      <div className="flex items-baseline mt-4 mb-6">
+                        <div className="space-x-2 flex">
                           <label>
-                            <input class="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-lg" name="size" type="radio" value="xs" checked></input>
+                            <input className="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-lg" name="size" type="radio" value="xs" checked></input>
                             XS
                           </label>
                           <label>
-                            <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="s"></input>
+                            <input className="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="s"></input>
                             S
                           </label>
                           <label>
-                            <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="m"></input>
+                            <input className="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="m"></input>
                             M
                           </label>
                           <label>
-                            <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="l"></input>
+                            <input className="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="l"></input>
                             L
                           </label>
                           <label>
-                            <input class="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="xl"></input>
+                            <input className="w-9 h-9 flex items-center justify-center" name="size" type="radio" value="xl"></input>
                             XL
                           </label>
                         </div>
-                        <div class="ml-auto text-sm text-gray-500 underline">{item?.category}</div>
+                        <div className="ml-auto text-sm text-gray-500 underline">{item?.category}</div>
                       </div>
-                      <div class="flex space-x-3 mb-4 text-sm font-medium">
-                        <div class="flex-auto flex space-x-3">
-                          <button class="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="submit">Buy now</button>
-                          <button class="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button" onClick={removeBasket}>Remove to bag</button>
+                      <div className="flex space-x-3 mb-4 text-sm font-medium">
+                        <div className="flex-auto flex space-x-3">
+                          <button className="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="submit">Buy now</button>
+                          <button className="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button" onClick={removeBasket}>Remove to bag</button>
                         </div>
-                        <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" aria-label="like">
+                        <button className="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" aria-label="like">
                           <svg width="20" height="20" fill="currentColor">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                           </svg>
                         </button>
                       </div>
-                      <p class="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500">
                         {item?.description}
                       </p>
-                      <p class="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500">
                         Free shipping on all continental US orders.
                       </p>
                     </form>
